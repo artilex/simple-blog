@@ -38,12 +38,12 @@
                     {{ $tag->updated_at->format('d.m.Y') }}
                 </div>
                 <div class="item-col">
-                    <span class="button" tagId="{{ $tag->id }}">
+                    <a class="button" href="{{ route('tag.edit', $tag->id) }}">
                         Редактировать
-                    </span>
+                    </a>
                 </div>
                 <div class="item-col">
-                    <span class="button" onclick="handleDeleteTag({{ $tag->id }});" >
+                    <span class="button" onclick="handleDeleteTag( {{ $tag->id }} );" >
                         Удалить
                     </span>
                 </div>

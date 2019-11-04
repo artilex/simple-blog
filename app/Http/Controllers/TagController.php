@@ -14,7 +14,10 @@ class TagController extends Controller
     }
 
     public function create() {
-        return view('admin.tag.create');
+        $tag = new Tag();
+        return view('admin.tag.create', [
+            'tag' => $tag
+        ]);
     }
 
     public function store(Request $request) {
@@ -25,12 +28,19 @@ class TagController extends Controller
         return redirect()->route('tags');
     }
 
-    public function edit() {
-        
+    public function edit($id) {
+        $tag = Tag::find($id);
+        return view('admin.tag.create', [
+            'tag' => $tag
+        ]);
     }
 
     public function update(Request $request, $id) {
-        
+        $tag = Tag::find($id);
+        $tag->name = $request->input('tag_name');
+        $tag->save();
+
+        return redirect()->route('tags');
     }
 
     public function destoy($id) {
