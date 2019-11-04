@@ -11,18 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return redirect('articles');
 });
 
-Route::group(['middleware' => 'auth', 'prefix' => 'a'], function() {
+Route::get('articles', 'BlogController@articles')->name('blog.articles');
+Route::get('tags', 'BlogController@tags')->name('blog.tags');
+Route::get('about', 'BlogController@about')->name('blog.about');
+
+//Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'a'], function() {
+Route::group(['middleware' => 'guest', 'prefix' => 'a'], function() {
     Route::get('/', 'AdminController@index');
-    Route::get('article', 'ArticleController@index');
-    Route::get('tag', 'TagController@index');
-    Route::get('user', 'UserController@index');
-    Route::get('comment', 'CommentController@index');
+
+    Route::get('article', 'ArticleController@index')->name('articles');
+
+    Route::get('tags', 'TagController@index')->name('tags');
+    Route::resource('tag', 'TagController')
+        ->only(['create', 'store', 'edit', 'update', 'destroy']);
+
+    Route::get('user', 'UserController@index')->name('users');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('login', 'LoginController@index')->name('login');
