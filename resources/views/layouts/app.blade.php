@@ -37,7 +37,19 @@
                     </div>
                 </div>
                 <div class="login-block header-item">
-                    {{ Auth::user()->name }}
+                    @if ( Auth::check() )
+                        @if (Auth::user()->is_admin)
+                            <a href="{{ route('admin.panel') }}">
+                                {{ Auth::user()->name }}
+                            </a>
+                        @else
+                            {{ Auth::user()->name }}
+                        @endif
+                    @else
+                        <a href="{{ route('login') }}">
+                            Войти
+                        </a>
+                    @endif
                 </div>
             </header>
             <main class="main-content">

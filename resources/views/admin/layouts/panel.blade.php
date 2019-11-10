@@ -30,7 +30,7 @@
                         <a href="{{ route('tags') }}">Теги</a>
                     </div>
                     <div class="menu-item">
-                        <a href="{{ route('users') }}">Пользователи</a>
+                        <a href="#">Пользователи</a>
                     </div>
                 </div>
                 <div class="login-block header-item">
@@ -45,5 +45,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/textarea.js') }}"></script>
 </body>
 </html>
