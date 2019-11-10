@@ -14,10 +14,7 @@ class TagController extends Controller
     }
 
     public function create() {
-        $tag = new Tag();
-        return view('admin.tag.create', [
-            'tag' => $tag
-        ]);
+        return view('admin.tag.create');
     }
 
     public function store(Request $request) {

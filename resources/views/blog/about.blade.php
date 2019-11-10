@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="about-block">
-    <div class="about-title">Обо мне</div>
+    <div class="article-title">Обо мне</div>
     <div class="about-content">
         <div class="about-description">
             <div class="name-line">Котоменко Анна</div>

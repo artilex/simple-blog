@@ -4,8 +4,7 @@
 
 <div class="item-list">
     <div class="article-container">
-    <div class="article">
-        <div class="article-image-block">
+        <div>
             <img class="article-image" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
         </div>
         <div class="article-description">
@@ -26,12 +25,10 @@
             <div class="article-date">
                 03-11-2019
             </div>
-        </div>
     </div>
 </div>
 <div class="article-container">
-    <div class="article">
-        <div class="article-image-block">
+        <div>
             <img class="article-image" src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg">
         </div>
                 <div class="article-description">
@@ -52,12 +49,10 @@
             <div class="article-date">
                 03-11-2019
             </div>
-        </div>
     </div>
 </div>
 <div class="article-container">
-    <div class="article">
-        <div class="article-image-block">
+        <div>
             <img class="article-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTxbWDRp0uDnhvGkesRkA8DsHUomz2vNr07nD7AEE1_I29izRR6">
         </div>
                 <div class="article-description">
@@ -78,12 +73,10 @@
             <div class="article-date">
                 03-11-2019
             </div>
-        </div>
     </div>
 </div>
 <div class="article-container">
-    <div class="article">
-        <div class="article-image-block">
+        <div>
             <img class="article-image" src="https://cdn.arstechnica.net/wp-content/uploads/2016/02/5718897981_10faa45ac3_b-640x624.jpg">
         </div>
                <div class="article-description">
@@ -104,12 +97,10 @@
             <div class="article-date">
                 03-11-2019
             </div>
-        </div>
     </div>
 </div>
 <div class="article-container">
-    <div class="article">
-        <div class="article-image-block">
+        <div>
             <img class="article-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQw9T-FyRzZhM1cJR9mmYqRbLAKdGhkFYtAqntaoQ3fwi2673lF">
         </div>
                 <div class="article-description">
@@ -130,11 +121,9 @@
             <div class="article-date">
                 03-11-2019
             </div>
-        </div>
     </div>
 </div>
 <div class="article-container">
-    <div class="article">
             <img class="article-image" src="https://html5box.com/html5lightbox/images/mountain.jpg">
                <div class="article-description">
             <div class="article-tag-list">
@@ -157,7 +146,6 @@
             <div class="article-date">
                 03-11-2019
             </div>
-        </div>
     </div>
 </div>
 </div>

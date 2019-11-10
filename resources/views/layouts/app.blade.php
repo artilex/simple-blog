@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="login-block header-item">
-                    Username
+                    {{ Auth::user()->name }}
                 </div>
             </header>
             <main class="main-content">

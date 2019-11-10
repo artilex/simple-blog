@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-image: url("/img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 102%;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+.wrap {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-block {
+    background-color: #093b52;
+    border: 1px solid #00090b;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+}
+
+.login-block input {
+    margin-top: 15px;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.error {
+    color: red;
+}

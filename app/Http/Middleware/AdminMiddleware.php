@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 
 class AdminMiddleware
 {
@@ -33,8 +34,8 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->getUser()->type !== "admin") {
-            return redirect('/home');
+        if ( !$this->auth->getUser()->is_admin ) {
+            return redirect('/');
         }
 
         return $next($request);
