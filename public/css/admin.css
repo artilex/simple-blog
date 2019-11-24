@@ -30,6 +30,7 @@ body {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 10px 0 #00090b;
 }
 
 .logo-block {
@@ -103,5 +104,32 @@ label.form-item {
     border: 1px solid white;
     padding: 5px;
     color: white;
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.tag-list {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.tag-list .tag-item {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #c3d9ec;
+    border-radius: 3px 5px;
+    padding: 5px;
+    color: #e7f0f7;
+    background-color: #08f;
+}
+
+.tag-name {
+    background-color: #08f;
+    border: none;
+}
+
+.del-icon {
+    color: red;
     cursor: pointer;
 }
