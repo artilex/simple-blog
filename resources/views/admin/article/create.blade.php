@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="{{ route('article.store') }}" id="tag-form">
+<form method="POST" action="{{ route('article.save', 'new') }}" id="tag-form">
     @include('admin.article._form', ['article' => $article])
 </form>
 

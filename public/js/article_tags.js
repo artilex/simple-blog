@@ -1,79 +1,98 @@
-
-const tagTemplate = (tagId, tagName) => {
+const tagTemplate = (tag) => {
+    const tagAttr = tag.isNew ? 'readonly' : 'disabled';
     return `
-        <div class="tag-item" tagId="${tagId}">
+        <div class="tag-item" tagId="${tag.id}">
         <input 
             type = "text"
             class = "tag-name"
-            name = "tagIds[${tagId}]"
-            value = "${tagName}"
-            readonly
+            name = "tagIds[${tag.id}]"
+            value = "${tag.name}"
+            ${tagAttr}
         >
-        <span class="del-icon" onclick="handleDelete(${tagId})">&#10006;<span>
+        <span class="del-icon" onclick="handleDelete(${tag.id})">&#10006;<span>
         </div>`;
 }
 
-let tagIdsToAdd = [];
-let tagIdsToDelete = [];
+const deleteTemplate = (tagId) => {
+    return `<input type = "hidden" name = "deleteTagIds[${tagId}]" value = "${tagId}">`;
+}
+
+let tagsToAdd = [];
+let tagIdToDelete = 0;
+
+const addToForm = (tagId, tagName) => {
+    const tagIsNew = false;
+    const tag = {
+        id: tagId.toString(),
+        name: tagName,
+        isNew: tagIsNew
+    }
+
+    if (tagAdd(tag)) {
+        tagShow(tag);
+    }
+}
 
 const handleAdd = () => {
     const selector = document.getElementById('tag-select');
     const selected = selector[ selector.selectedIndex ];
-    const tagId = selected.value;
-    const tagName = selected.innerHTML;
-    if (addTag(tagId)) {
-        showTag(tagId, tagName);
+    const tagIsNew = true;
+
+    const tag = {
+        id: selected.value,
+        name: selected.innerHTML,
+        isNew: tagIsNew
+    }
+
+    if ( tagAdd(tag) ) {
+        tagShow(tag);
     }
 }
 
 const handleDelete = (tagId) => {
-    if (deleteTag( tagId.toString() )) {
+    if (deleteTag(tagId)) {
         removeTag(tagId);
     }
 }
 
-const addTag = (tagId) => {
-    const wasAdded = tagIdsToAdd.includes(tagId);
+const tagAdd = (tag) => {
+    const wasAdded = arrContain(tagsToAdd, tag.id);
     let added = false;
 
     if (!wasAdded) {
-        tagIdsToAdd.push(tagId);
+        tagsToAdd.push(tag);
         added = true;
     }
 
     return added;
 }
 
-const showTag = (tagId, tagName) => {
-    const tag = tagTemplate(tagId, tagName);
+const tagShow = (tag) => {
+    const tagHtml = tagTemplate(tag);
 
     const tagList = document.getElementById('tag-list');
-    tagList.innerHTML += tag;
-}
-
-const addToForm = () => {
-    if (addTag(tagId)) {
-        showTag(tagId, tagName);
-    }
+    tagList.innerHTML += tagHtml;
 }
 
 const deleteTag = (tagId) => {
-    let wasAdded = tagIdsToAdd.includes(tagId);
-    const wasDeleted = tagIdsToDelete.includes(tagId);
+    const wasAdded = arrContain(tagsToAdd, tagId);
     let deleted = false;
 
     if (wasAdded) {
-        let idx = tagIdsToAdd.indexOf(tagId);
-        if (idx != -1) {
-            tagIdsToAdd.splice(idx, 1);
+        let tagIndex;
+        tagsToAdd.forEach(tag => {
+            if (tag.id == tagId) {
+                tagIndex = tagsToAdd.indexOf(tag);
+                if (!tag.isNew) {
+                    tagIdToDelete = tag.id;
+                }
+            }
+        });
+        if (tagIndex != -1) {
+            tagsToAdd.splice(tagIndex, 1);
             deleted = true;
         }
     }
-
-    /*if (!wasDeleted) {
-        tagIdsToDelete.push(tagId);
-        deleted = true;
-    }*/
 
     return deleted;
 }
@@ -81,4 +100,23 @@ const deleteTag = (tagId) => {
 const removeTag = (tagId) => {
     let div = document.querySelector(`[tagId="${tagId}"]`);
     div.remove();
+
+    const tagList = document.getElementById('tag-list');
+    if (tagIdToDelete !== 0) {
+        const tagHtml = deleteTemplate(tagIdToDelete);
+        tagList.innerHTML += tagHtml;
+    }
+    tagIdToDelete = 0;
+}
+
+const arrContain = (tags, tagId) => {
+    let contain = false;
+
+    tags.forEach( currentTag => {
+        if(currentTag.id == tagId) {
+            contain = true;
+        }
+    });
+
+    return contain;
 }

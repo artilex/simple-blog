@@ -7,9 +7,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'a'], function() {
     //  ARTICLES
     Route::get('articles', 'ArticleController@index')->name('articles');
     Route::get('article/create', 'ArticleController@create')->name('article.create');
-    Route::post('article', 'ArticleController@store')->name('article.store');
+    Route::post('article/{id}', 'ArticleController@save')->name('article.save');
     Route::get('article/{id}/edit', 'ArticleController@edit')->name('article.edit');
-    Route::put('article/update/{id}', 'ArticleController@update')->name('article.update');
 
     //  TAGS
     Route::get('tags', 'TagController@index')->name('tags');

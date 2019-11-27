@@ -3,7 +3,7 @@
 <input type="text" name='articleName' class="form-item" value="{{ $article->title }}">
 
 <label class="form-item">Описание статьи</label>
-<textarea rows="3" class="form-item" name="articleContent">{{ $article->content }}</textarea>
+<textarea rows="15" class="form-item" name="articleContent">{{ $article->content }}</textarea>
 
 <label class="form-item">Теги</label>
 <div class="form-item">

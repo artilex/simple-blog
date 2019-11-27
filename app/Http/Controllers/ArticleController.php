@@ -25,15 +25,6 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
-        $article = new Article();
-        $input = $request->only('articleName', 'articleContent', 'tagIds');
-
-        $this->save($input, $article);
-
-        return redirect()->route('articles');
-    }
-
     public function edit($id) {
         $article = Article::find($id);
         $tags = Tag::all();
@@ -46,28 +37,33 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id) {
-        $article = Article::find($id);
-        $input = $request->only('articleName', 'articleContent', 'tagIds');
-        
-        $this->save($input, $article);
-
-        return redirect()->route('articles');
-    }
-
-    public function destoy($id) {
-        $article = Article::find($id);
-        $article->delete();
-    }
-
-    private function save($input, $article)
+    public function save(Request $request, $id)
     {
-        $article->title = $input['articleName'];
-        $article->content = $input['articleContent'];
+        if ($id == 'new') {
+            $article = new Article();
+        } else {
+            $article = Article::find($id);
+        }
+
+        $article->title = $request->articleName;
+        $article->content = $request->articleContent;
         $article->checked = true;
         $article->save();
 
-        $tagIds = $input['tagIds'];
+        if ($request->has('tagIds')) {
+            $tagIds = $request->get('tagIds');
+        } else {
+            $tagIds = [];
+        }
+
+        $deleteTagIds = $request->has('deleteTagIds') ? $request->get('deleteTagIds') : [];
+
+        foreach ($deleteTagIds as $id) {
+            $articleTag = ArticleMorph::where('article_id', '=', $article->id)
+                ->where('morph_id', '=', $id)
+                ->first();
+            $articleTag->delete();
+        }
 
         foreach ($tagIds as $key => $value) {
             $articleMorph = new ArticleMorph;
@@ -75,6 +71,21 @@ class ArticleController extends Controller
             $articleMorph->morph_id = $key;
             $articleMorph->morph_type = Tag::class;
             $articleMorph->save();
+        }
+
+        return redirect()->route('articles');
+    }
+
+    public function destoy($id) {
+        $article = Article::find($id);
+        $article->delete();
+
+        $articleTags = ArticleMorph::
+            where('article_id', '=', $id)
+            ->get();
+
+        foreach ($articleTags as $articleTag) {
+            $articleTag->delete();
         }
     }
 }

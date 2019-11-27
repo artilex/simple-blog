@@ -76,6 +76,10 @@ form {
     margin-bottom: 20px;
 }
 
+textarea.form-item {
+    resize: vertical;
+}
+
 label.form-item {
     font-size: 1.2em;
     color: #c3d9ec;
