@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->boolean('checked');
+            $table->string('image_name');
             $table->timestamps();
         });
     }

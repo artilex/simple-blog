@@ -41,6 +41,7 @@ class ArticleController extends Controller
     {
         if ($id == 'new') {
             $article = new Article();
+            $article->image_name = 'no-image.jpg';
         } else {
             $article = Article::find($id);
         }
@@ -49,6 +50,16 @@ class ArticleController extends Controller
         $article->content = $request->articleContent;
         $article->checked = true;
         $article->save();
+
+        if($request->hasFile('article_image')) {
+            $file = $request->file('article_image');
+            $fileName = $article->id . '.' . $file->getClientOriginalExtension();
+            $filePath = public_path() . '/img/articles/';
+            $file->move($filePath, $fileName);
+
+            $article->image_name = $fileName;
+            $article->save();
+        }
 
         if ($request->has('tagIds')) {
             $tagIds = $request->get('tagIds');

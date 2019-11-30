@@ -11,4 +11,11 @@ class Tag extends Model
     {
         return $this->morphMany(ArticleMorph::class, 'morph');
     }
+
+    public function articleCount()
+    {
+        $count = $this->articles->count();
+        return $count;
+    }
+
 }

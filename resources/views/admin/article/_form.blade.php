@@ -2,6 +2,15 @@
 <label class="form-item">Название статьи</label>
 <input type="text" name='articleName' class="form-item" value="{{ $article->title }}">
 
+@if ($isNew)
+    <label class="form-item">Изображение для статьи</label>
+    <input class="form-item" type="file" name="article_image">
+@else
+    <img src="{{ asset('img/articles/' . $article->image_name) }}" width="100%">
+    <label class="form-item">Выбрать новое изображение для статьи</label>
+    <input class="form-item" type="file" name="article_image" value="{{ $article->image_name }}">
+@endif
+
 <label class="form-item">Описание статьи</label>
 <textarea rows="15" class="form-item" name="articleContent">{{ $article->content }}</textarea>
 

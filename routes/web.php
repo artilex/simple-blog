@@ -23,7 +23,12 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'a'], function() {
 
 //  GUEST
 Route::get('articles', 'BlogController@articles')->name('blog.articles');
+Route::get('articles/search/', 'BlogController@searchArticles')->name('blog.search_articles');
+Route::get('article/{id}', 'BlogController@article')->name('blog.article');
+
 Route::get('tags', 'BlogController@tags')->name('blog.tags');
+Route::get('tag/{tagId}/articles/', 'BlogController@tagArticles')->name('blog.tag_articles');
+
 Route::get('about', 'BlogController@about')->name('blog.about');
 
 //  LOGIN

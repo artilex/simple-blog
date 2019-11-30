@@ -132,3 +132,42 @@ body {
 .about-content {
     margin: 15px 10px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.info-block {
+    box-shadow: 9px 9px 9px 0 #00090b;
+    border: 1px solid #00090b;
+    margin-bottom: 25px;
+    padding: 10px 15px;
+    color: white;
+}
+
+.info-name {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.pagination li {
+    list-style: none;
+    border: 1px solid white;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+/* ARTICLE */
+.article-title {
+    font-size: 2em;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.article-content {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: white;
+    font-size: 1.2em;
+}

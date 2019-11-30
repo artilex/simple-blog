@@ -11,4 +11,5 @@ class Article extends Model
     {
         return $this->hasMany(ArticleMorph::class, 'article_id', 'id');
     }
+
 }

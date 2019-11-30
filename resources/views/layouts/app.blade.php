@@ -23,7 +23,10 @@
                     </a>
                 </div>
                 <div class="search-block header-item">
-                    <input type="text" name="search-title" placeholder="Поиск...">
+                    <form method="GET" action="{{ route('blog.search_articles') }}">
+                        <input type="text" name="search_text" placeholder="Поиск...">
+                        <input type="submit" value="Поиск">
+                    </form>
                 </div>
                 <div class="menu-block header-item">
                     <div class="menu-item">
